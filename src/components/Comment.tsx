@@ -2,6 +2,7 @@ import { ThumbsUp, Trash } from 'phosphor-react';
 import { useState } from 'react';
 import { Avatar } from './Avatar';
 import styles from './Comment.module.css';
+import { ModalDeleteComment } from './ModalDeleteComment';
 
 interface CommentProps {
     content: string;
@@ -10,6 +11,8 @@ interface CommentProps {
 
 export function Comment({content, onDeleteComment}: CommentProps) {
     const [likeCount, setLikeCount] = useState(0)
+    const [isOpenModalDeleteComment, setIsOpenModalDeleteComment] = useState(false)
+    const [commentForDeletion, setCommentForDeletion] = useState('')
 
     function handleDeleteComment(commentToDelete: string) {
         onDeleteComment(commentToDelete)
@@ -23,9 +26,19 @@ export function Comment({content, onDeleteComment}: CommentProps) {
         })
     }
 
+    function openModalDeleteComment(content: string) {
+        setIsOpenModalDeleteComment(true)
+        setCommentForDeletion(content)
+    }
+
+    function closeModalDeleteComment() {
+        setIsOpenModalDeleteComment(false)
+    }
+
     const hasLikes = likeCount > 0
 
     return (
+        <>
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://github.com/glaubermatos.png" alt="" />
 
@@ -39,7 +52,7 @@ export function Comment({content, onDeleteComment}: CommentProps) {
 
                         <button
                             title="Deletar comentário"
-                            onClick={() => handleDeleteComment(content)}
+                            onClick={() => openModalDeleteComment(content)}
                         >
                             <Trash size={24} />
                         </button>
@@ -56,5 +69,13 @@ export function Comment({content, onDeleteComment}: CommentProps) {
                 </footer>
             </div>
         </div>
+
+        <ModalDeleteComment
+            isOpen={isOpenModalDeleteComment}
+            onCloseModal={closeModalDeleteComment}
+            onDeleteComment={handleDeleteComment}
+            commentForDeletion={commentForDeletion}
+        />
+        </>
     )
 }
