@@ -23,9 +23,9 @@
 
 :root, html[data-theme='light'] {
     --white: #fff;
-    --gray-800: #e1e1e6;
-    --gray-900: #c4c4cc;
-    --gray-700: #d2d2da;
+    --gray-800: #ffffff;
+    --gray-900: #ededee;
+    --gray-700: #eeeeee;
     --gray-600: #c4c4cc;
     --gray-500: #323238;
     --gray-400: #29292e;

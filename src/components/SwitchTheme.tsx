@@ -1,23 +1,20 @@
 
+import { Moon, Sun } from 'phosphor-react'
+import { useState } from 'react'
+
 import styles from './SwitchTheme.module.css'
 
 export default function SwitchTheme() {
+    const [isLightThemeSelected, setIsLightThemeSelected] = useState(false)
 
-    // const { toggleTheme, user: { theme } } = useContext(AuthContext)
-
-    // const isDarkMode = theme === 'dark' ? true : false
-    // const html = document.querySelector('html')
-
-    // if (isDarkMode) {
-    //     html.classList.add('dark')
-    // } else {
-    //     html.classList.remove('dark')
-    // }
+    const htmlThemeData = isLightThemeSelected ? 'light' : 'dark'
+    const html = document.querySelector('html')
+    html?.setAttribute('data-theme', htmlThemeData)
 
 
-    // function handleToggleTheme() {
-    //     toggleTheme()
-    // }
+    function handleToggleTheme() {
+        setIsLightThemeSelected(!isLightThemeSelected)
+    }
 
     return (
         <div className={styles.switchTheme}>
@@ -25,12 +22,12 @@ export default function SwitchTheme() {
                 className={`${styles.checkbox} ${styles.hidden}`}
                 id="checkbox"
                 type="checkbox"
-                onChange={(e) => console.log(e)}
-                checked={false}
+                onChange={handleToggleTheme}
+                checked={isLightThemeSelected}
             />
-            <label htmlFor="checkbox">
-                {/* <Moon size={24} color="#f39c12" /> */}
-                {/* <Sun size={24} color="#f1c40f" /> */}
+            <label htmlFor="checkbox" title='Mudar tema'>
+                <Moon size={24} color="#00b37e" />
+                <Sun size={24} color="#00b37e" />
                 
                 <div className={styles.ball}></div>
             </label>

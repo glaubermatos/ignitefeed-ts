@@ -6,11 +6,11 @@ import SwitchTheme from './SwitchTheme'
 export function Header() {
     return (
         <header className={styles.header}>
-            <div>
-                <img src={igniteLogo} alt="Ignite logo" />
-                <strong>Ignite Feed</strong>
+            <img src={igniteLogo} alt="Ignite logo" />
+            <strong>Ignite Feed</strong>
+            <div className={styles.switchContainer}>
+                <SwitchTheme />
             </div>
-            <SwitchTheme />
         </header>
     )
 }
