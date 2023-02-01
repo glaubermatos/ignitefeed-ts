@@ -2,6 +2,8 @@ import { Header } from "./components/Header";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
 
+import ReactModal from 'react-modal'
+
 import './global.css'
 
 import styles from './App.module.css'
@@ -34,6 +36,8 @@ const posts = [{
   ],
   publishedAt: new Date('2023-01-12 10:00:00')
 }]
+
+ReactModal.setAppElement('#root')
 
 export function App() {
   return (
